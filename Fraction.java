@@ -24,7 +24,7 @@
 //      lcd
 //    comparison methods, including equals...
 
-public class Fraction {
+public class Fraction implements Comparable<Fraction> {
     // instance fields go here
     private int num, denom;
 
@@ -133,7 +133,29 @@ public class Fraction {
     // a class does not HAVE to have instance constructor method//can be inherited
 
     // methods go here
-    // @Override
+    public boolean lessThan(Fraction other){
+        return compareTo(other) < 0;
+    }
+
+    public boolean leq(Fraction other){
+        return this.compareTo(other) <= 0;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof Fraction){
+            Fraction other = (Fraction) o;
+            return compareTo(other) == 0;
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(Fraction other){
+        return num * other.denom - denom * other.num;
+    }
+
+    @Override
     public String toString() {
         String result;
         if (denom == 1) {
